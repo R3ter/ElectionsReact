@@ -1,0 +1,11 @@
+.VotingPage {
+  display: flex;
+  margin-top: 100px;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+  div {
+    margin: 10px;
+  }
+}

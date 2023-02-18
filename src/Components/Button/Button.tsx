@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Button from "@mui/material/Button";
 import "./style.scss";
+import { CircularProgress } from "@mui/material";
 
 interface props {
   text: string;
@@ -24,7 +26,8 @@ export default ({ text, style = {}, onclick }: props) => {
         )
       }
     >
-      {loading ? "Loaidng..." : text}
+      {/* {loading ? <CircularProgress color="info" size={25} /> : text} */}
+      {loading ? "Loading..." : text}
     </button>
   );
 };
