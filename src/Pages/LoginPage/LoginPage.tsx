@@ -1,10 +1,13 @@
-import Input from "../../Components/Input/Input";
+import "./style.scss";
+import Logo from "../../Components/Logo/Logo";
+import LoginForm from "../../Components/LoginForm/LoginForm";
 
 export default () => {
   return (
-    <div>
-      <Input label="username" name="username" type="text" />
-      <Input label="password" name="username" type={"password"} />
+    <div className="loginPage">
+      <Logo />
+      <h1>Login Page</h1>
+      <LoginForm />
     </div>
   );
 };

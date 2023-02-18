@@ -1,15 +1,25 @@
+import "./style.scss";
 interface props {
   label: string;
   name: string;
   type: "text" | "password" | "email" | "number";
   style?: React.CSSProperties;
+  valueRef?: { value: string };
 }
-const Input = ({ label, name, type = "text", style }: props) => {
+const Input = ({ label, name, type = "text", style, valueRef }: props) => {
   return (
-    <div style={{ textAlign: "left", margin: 10, ...style }}>
-      <label htmlFor="input">{label}: </label>
+    <div className="input" style={{ textAlign: "left", margin: 10, ...style }}>
+      {/* <label htmlFor="input">{label}: </label> */}
       <br></br>
-      <input id="input" name={name} type={type} />
+      <input
+        onChange={(e) => {
+          if (valueRef) valueRef.value = e.target.value;
+        }}
+        placeholder={label}
+        id="input"
+        name={name}
+        type={type}
+      />
     </div>
   );
 };

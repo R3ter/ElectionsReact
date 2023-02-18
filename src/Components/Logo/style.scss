@@ -1,0 +1,15 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  div {
+    width: 200px;
+    height: 200px;
+    background-image: url("electionLogo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
