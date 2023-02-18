@@ -11,8 +11,12 @@ const getAllCandidate = (): any => {
 };
 const vote = (candidate: string, email: string): Boolean => {
   const data: any = getAllCandidate();
-  console.log(getAllCandidate());
   if (getIfUserVoted(email, candidate)) {
+    for (const i of Object.keys(data)) {
+      data[i].voters = data[i].voters.filter((e: string) => {
+        return e !== email;
+      });
+    }
     data[candidate].voters.push(email);
     localStorage.setItem("info", JSON.stringify(data));
 

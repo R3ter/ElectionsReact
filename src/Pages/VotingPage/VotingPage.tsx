@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MediaCard from "../../Components/Card/CandidateCard";
 import { getAllCandidate, getUserData } from "../../Data/ModifyData";
@@ -11,7 +11,7 @@ export default () => {
       navigate("/");
     }
   }, []);
-
+  const setCardsStates: Function[] = [];
   return (
     <div style={{ width: "100%" }}>
       <h1 style={{ alignItems: "normal" }}>Voting page</h1>
@@ -19,6 +19,7 @@ export default () => {
         {Object.keys(getAllCandidate()).map((e: string) => (
           <div>
             <MediaCard
+              setAllCardsStates={setCardsStates}
               name={e}
               voted={
                 !!getAllCandidate()[e].voters.find(

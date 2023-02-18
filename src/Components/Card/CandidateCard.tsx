@@ -18,10 +18,13 @@ interface IProps {
   name: string;
   image?: string;
   voted: boolean;
+  setAllCardsStates: Function[];
 }
-export default ({ name, image, voted }: IProps) => {
+export default ({ name, image, voted, setAllCardsStates }: IProps) => {
   const [checked, setChecked] = useState(!!voted);
-  console.log(getVoters(name));
+  setAllCardsStates.push(() => {
+    setChecked(false);
+  });
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardMedia sx={{ height: 140 }} image={image} title="green iguana" />
@@ -39,6 +42,9 @@ export default ({ name, image, voted }: IProps) => {
         <Button
           onClick={() => {
             const temp = vote(name, getUserData().email.value);
+            setAllCardsStates.forEach((e) => {
+              e();
+            });
             if (temp) setChecked(true);
             else setChecked(false);
           }}
@@ -50,11 +56,13 @@ export default ({ name, image, voted }: IProps) => {
           <VoteIcon />
         </Button>
       </CardActions>
-      <p>0/{getUsersCount()} Votes</p>
+      <p>
+        {getVoters(name).length - 1}/{getUsersCount()} Votes
+      </p>
       <LinearProgress
         variant="buffer"
-        value={50}
-        valueBuffer={60}
+        value={((getVoters(name).length - 1) * 100) / getUsersCount()}
+        valueBuffer={100}
         style={{ margin: 20, marginTop: 0 }}
       />
     </Card>
