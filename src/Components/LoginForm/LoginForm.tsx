@@ -4,13 +4,14 @@ import { getAllUsers, Login } from "../../Data/ModifyData";
 import { useNavigate } from "react-router-dom";
 import { Alert, Snackbar } from "@mui/material";
 import { useState } from "react";
+import "./style.scss";
 export default () => {
   const email = { value: "" };
   const password = { value: "" };
   const navigate = useNavigate();
   const [error, setError] = useState("");
   return (
-    <div>
+    <div className="LoginForm">
       <Input valueRef={email} label="Email" name="email" type="email" />
       <Input
         valueRef={password}

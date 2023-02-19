@@ -45,6 +45,19 @@ const getUserData = () => {
   }
   return null;
 };
+const getVotedFor = (userEmail: string) => {
+  const data = getAllCandidate();
+  for (const e of Object.keys(data)) {
+    if (
+      data[e].voters.find((e: string) => {
+        console.log(e== userEmail);
+        return e == userEmail;
+      })
+    ) {
+      return e;
+    }
+  }
+};
 const Login = (
   username: { value: string },
   password: { value: string }
@@ -68,6 +81,7 @@ export {
   getIfUserVoted,
   logOut,
   vote,
+  getVotedFor,
   getVoters,
   getUserData,
   Login,

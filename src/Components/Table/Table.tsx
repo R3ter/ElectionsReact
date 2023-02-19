@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
-import { getAllUsers } from "../../Data/ModifyData";
+import { getAllUsers, getVotedFor, getVoters } from "../../Data/ModifyData";
 import "./style.scss";
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -10,19 +10,16 @@ const columns: GridColDef[] = [
     headerName: "Email",
     width: 200,
   },
+  {
+    field: "VotedFor",
+    headerName: "Voted for",
+    width: 150,
+  },
 ];
 
 export default function DataTable() {
   return (
-    <div
-      className="Table"
-      style={{
-        height: 400,
-        width: "100%",
-        color: "white",
-        borderColor: "white",
-      }}
-    >
+    <div className="Table">
       <h3>All Users:</h3>
 
       <DataGrid
@@ -34,6 +31,7 @@ export default function DataTable() {
         rows={getAllUsers().map((e: any, index: number) => ({
           ...e,
           id: index + 1,
+          VotedFor: getVotedFor(e.email)?.toUpperCase() || "Have not voted",
         }))}
         columns={columns}
         pageSize={10}
