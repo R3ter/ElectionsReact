@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MediaCard from "../../Components/Card/CandidateCard";
+import Header from "../../Components/Header/Header";
 import { getAllCandidate, getUserData } from "../../Data/ModifyData";
 import "./style.scss";
 
@@ -14,6 +15,7 @@ export default () => {
   const setCardsStates: Function[] = [];
   return (
     <div style={{ width: "100%" }}>
+      <Header />
       <h1 style={{ alignItems: "normal" }}>Voting page</h1>
       <div className="VotingPage">
         {Object.keys(getAllCandidate()).map((e: string) => (
@@ -23,7 +25,7 @@ export default () => {
               name={e}
               voted={
                 !!getAllCandidate()[e].voters.find(
-                  (e: string) => e === getUserData()?.email?.value
+                  (e: string) => e === getUserData()?.email
                 )
               }
               image={getAllCandidate()[e].image}

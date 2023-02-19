@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import { getAllUsers } from "../../Data/ModifyData";
+import { getAllUsers, Login } from "../../Data/ModifyData";
 import { useNavigate } from "react-router-dom";
 import { Alert, Snackbar } from "@mui/material";
 import { useState } from "react";
@@ -35,8 +35,7 @@ export default () => {
           startLoading();
           setTimeout(() => {
             endLoading();
-            if (getAllUsers().find((e: any) => e.email == email.value)) {
-              localStorage.setItem("user", JSON.stringify({ email, password }));
+            if (Login(email, password)) {
               navigate("VotingPage");
             } else {
               setError("Email or Password is incorrect!!");

@@ -45,13 +45,30 @@ const getUserData = () => {
   }
   return null;
 };
+const Login = (
+  username: { value: string },
+  password: { value: string }
+): boolean => {
+  const user = getAllUsers().find((e: any) => e.email == username.value);
+  if (user && user.password === password.value) {
+    delete user.password;
+    localStorage.setItem("user", JSON.stringify({ ...user }));
+    return true;
+  }
+  return false;
+};
+const logOut = () => {
+  localStorage.removeItem("user");
+};
 const getUsersCount = () => getAllUsers().length;
 export {
   getUsersCount,
   getAllUsers,
   getAllCandidate,
   getIfUserVoted,
+  logOut,
   vote,
   getVoters,
   getUserData,
+  Login,
 };

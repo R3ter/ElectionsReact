@@ -4,6 +4,7 @@ import App from "./App";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VotingPage from "./Pages/VotingPage/VotingPage";
+import AdminPage from "./Pages/AdminPage/AdminPage";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/VotingPage",
     element: <VotingPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <AdminPage />,
   },
 ]);
 

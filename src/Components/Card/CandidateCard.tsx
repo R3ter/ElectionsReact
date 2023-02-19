@@ -41,7 +41,7 @@ export default ({ name, image, voted, setAllCardsStates }: IProps) => {
       <CardActions style={{ display: "flex", justifyContent: "center" }}>
         <Button
           onClick={() => {
-            const temp = vote(name, getUserData().email.value);
+            const temp = vote(name, getUserData().email);
             setAllCardsStates.forEach((e) => {
               e();
             });
